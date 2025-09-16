@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>보컬 MBTI 진단</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 랜딩 페이지 -->
+    <div id="landing-page" class="page active">
+        <div class="container">
+            <header class="header">
+                <h1>보컬 MBTI 진단</h1>
+                <p class="subtitle">당신의 목소리로 알아보는 보컬 성격 유형</p>
+            </header>
+            
+            <main class="main-content">
+                <div class="hero-section">
+                    <div class="hero-image">
+                        <i class="fas fa-microphone-alt"></i>
+                    </div>
+                    <h2>15초만에 알아보는<br>나만의 보컬 성격</h2>
+                    <p>음성 분석을 통해 당신의 보컬 스타일과<br>맞춤형 트레이너를 추천해드립니다</p>
+                </div>
+                
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>정확한 분석</h3>
+                        <p>AI 기반 음성 분석</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-user-tie"></i>
+                        <h3>맞춤 트레이너</h3>
+                        <p>개인별 최적화된 코칭</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-music"></i>
+                        <h3>장르 추천</h3>
+                        <p>나에게 맞는 음악 스타일</p>
+                    </div>
+                </div>
+                
+                <button class="start-btn" onclick="startDiagnosis()">
+                    <i class="fas fa-play"></i>
+                    진단 시작하기
+                </button>
+            </main>
+        </div>
+    </div>
+
+    <!-- 녹음 페이지 -->
+    <div id="recording-page" class="page">
+        <div class="container">
+            <header class="header">
+                <button class="back-btn" onclick="goBack()">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1>음성 녹음</h1>
+            </header>
+            
+            <main class="recording-content">
+                <div class="recording-instructions">
+                    <h2>음성 녹음을 시작해주세요</h2>
+                    <p>조용한 환경에서 원하는 노래를 불러주세요</p>
+                    <div class="sentence-box">
+                        <p id="sentence">원하는 구간을 15~30초 정도 불러주세요. 잡음과 에코를 최소화하면 분석 정확도가 올라갑니다.</p>
+                    </div>
+                </div>
+                
+                <div class="recording-area">
+                    <div class="microphone-container">
+                        <div class="microphone" id="microphone">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                        <div class="recording-status" id="recording-status">
+                            <span class="status-text">녹음 준비</span>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="recording-controls">
+                        <button class="record-btn" id="record-btn" onclick="toggleRecording()">
+                            <i class="fas fa-microphone"></i>
+                            녹음 시작
+                        </button>
+                        <button class="stop-btn" id="stop-btn" onclick="toggleRecording()" disabled>
+                            <i class="fas fa-stop"></i>
+                            녹음 중지
+                        </button>
+                    </div>
+                    
+                    <div class="audio-player" id="audio-player" style="display: none;">
+                        <audio id="audio" controls></audio>
+                        <div class="action-buttons" style="margin-top:10px;">
+                            <button class="retry-btn" onclick="retryRecording()">
+                                <i class="fas fa-redo"></i>
+                                다시 녹음
+                            </button>
+                            <button class="contact-btn" id="analyze-btn" onclick="startAnalysis()" disabled>
+                                <i class="fas fa-chart-line"></i>
+                                분석 시작하기
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- 분석 페이지 -->
+    <div id="analyzing-page" class="page">
+        <div class="container">
+            <main class="analyzing-content">
+                <div class="analyzing-animation">
+                    <div class="spinner"></div>
+                    <h2>음성을 분석하고 있습니다</h2>
+                    <p>잠시만 기다려주세요...</p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- 결과 페이지 -->
+    <div id="result-page" class="page">
+        <div class="container">
+            <header class="header">
+                <button class="back-btn" onclick="goBack()">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1>진단 결과</h1>
+            </header>
+            
+            <main class="result-content">
+                <div class="result-header">
+                    <div class="mbti-type" id="mbti-type">
+                        <h2></h2>
+                    </div>
+                    <h3 id="mbti-title"></h3>
+                    <p id="mbti-detail"></p>
+                </div>
+                
+                <div class="character-images">
+                    <div class="character-image">
+                        <img id="character-img-male" src="" alt="남성 캐릭터">
+                        <div class="character-label">남성</div>
+                    </div>
+                    <div class="character-image">
+                        <img id="character-img-female" src="" alt="여성 캐릭터">
+                        <div class="character-label">여성</div>
+                    </div>
+                </div>
+                
+                <div class="vocal-details">
+                    <div class="detail-section">
+                        <h4>보컬의 특징</h4>
+                        <p id="vocal-features"></p>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4>주의/강점</h4>
+                        <p id="strengths"></p>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4>추천 장르</h4>
+                        <p id="genres"></p>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4>추천 곡</h4>
+                        <p id="songs"></p>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4>유사 아티스트</h4>
+                        <p id="artists"></p>
+                    </div>
+                </div>
+                
+                <div class="balance-chart">
+                    <h3>보컬 밸런스</h3>
+                    <div class="radar-chart">
+                        <svg class="radar-svg" viewBox="0 0 300 300">
+                            <g id="grid-lines"></g>
+                            <g id="axis-lines"></g>
+                            <polygon id="data-polygon" class="data-polygon"></polygon>
+                            <g id="data-points"></g>
+                            <g id="labels"></g>
+                            <g id="values"></g>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="share-btn" onclick="shareResult()">
+                        <i class="fas fa-share-alt"></i>
+                        결과 공유하기
+                    </button>
+                    <button class="trainer-recommendation-btn" onclick="goToTrainerPage()">
+                        <i class="fas fa-user-tie"></i>
+                        트레이너 추천받기
+                    </button>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- 트레이너 추천 페이지 -->
+    <div id="trainer-page" class="page">
+        <div class="container">
+            <header class="header">
+                <button class="back-btn" onclick="showPage('result-page')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1>맞춤 트레이너</h1>
+            </header>
+            
+            <main class="trainer-content">
+                <div class="trainer-matching">
+                    <h3>김대산 트레이너</h3>
+                    <div class="trainer-card">
+                        <div class="trainer-avatar">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="trainer-info">
+                            <h4>김대산 트레이너</h4>
+                            <p class="trainer-specialty">전문 보컬 코치</p>
+                            <p class="trainer-experience">10년 경력</p>
+                        </div>
+                        <div class="match-percentage">
+                            <span id="match-percentage">95%</span>
+                            <small>매칭률</small>
+                        </div>
+                    </div>
+                    
+                    <div class="trainer-description">
+                        <h4>추천 이유</h4>
+                        <p id="recommendation-reason">당신의 성격과 보컬 스타일에 최적화된 트레이닝을 제공합니다.</p>
+                    </div>
+                    
+                    <div class="training-details">
+                        <div class="training-section">
+                            <h4>트레이닝 방법</h4>
+                            <p id="training-method">퍼포먼스 중심 트레이너 / 무대 연출, 호흡 제어, 시선/표정 트레이닝</p>
+                        </div>
+                        
+                        <div class="training-section">
+                            <h4>트레이닝 방향</h4>
+                            <p id="training-direction">고음 체력 유지 훈련, 무대 동선 응용, 시선처리와 표정 제어, 발성 안전 벨팅 연습</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="contact-btn" onclick="contactTrainer()">
+                        <i class="fas fa-phone"></i>
+                        트레이너 연락하기
+                    </button>
+                    <button class="retry-btn" onclick="restartDiagnosis()">
+                        <i class="fas fa-redo"></i>
+                        다시 진단하기
+                    </button>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
