@@ -36,11 +36,6 @@ h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, select, label,
     color: #4ecdc4 !important;
 }
 
-/* 매칭률 텍스트 강조 */
-.match-percentage small {
-    color: rgba(255, 255, 255, 0.9) !important;
-    font-weight: 500;
-}
 
 /* 하이라이트 텍스트 색상 */
 .highlight-text {
@@ -739,21 +734,6 @@ body {
     font-size: 0.8rem;
 }
 
-.match-percentage {
-    text-align: center;
-}
-
-.match-percentage span {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #4ecdc4;
-    display: block;
-}
-
-.match-percentage small {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.8rem;
-}
 
 .trainer-description {
     background: rgba(255, 255, 255, 0.05);
@@ -1083,24 +1063,6 @@ button:focus, input:focus {
     text-align: center;
 }
 
-.match-percentage {
-    text-align: center;
-    margin-left: auto;
-    flex-shrink: 0;
-}
-
-.match-percentage span {
-    display: block;
-    font-size: 2em;
-    font-weight: bold;
-    color: #4ecdc4;
-}
-
-.match-percentage small {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.8em;
-    font-weight: 500;
-}
 
 .trainer-intro {
     background: rgba(78, 205, 196, 0.1);
@@ -1204,10 +1166,6 @@ button:focus, input:focus {
         text-align: center;
     }
     
-    .match-percentage {
-        margin-left: 0;
-        margin-top: 15px;
-    }
     
     .achievement-item {
         justify-content: center;

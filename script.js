@@ -300,9 +300,6 @@ function showResult() {
     // 결과 표시 (공통 함수 사용)
     displayResult(randomMbti);
     
-    // 매칭률 계산 (85-98% 사이 랜덤)
-    const matchPercentage = Math.floor(Math.random() * 14) + 85;
-    document.getElementById('match-percentage').textContent = matchPercentage + '%';
     
     showPage('result-page');
     
