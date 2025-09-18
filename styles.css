@@ -5,6 +5,14 @@
     box-sizing: border-box;
 }
 
+/* 단어별 줄넘김 설정 */
+* {
+    word-wrap: break-word;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
 /* 다크모드/라이트모드 구분 없이 강제 색상 설정 */
 * {
     color: inherit !important;
@@ -148,7 +156,7 @@ body {
 }
 
 .hero-title {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: white;
     margin-bottom: 20px;
@@ -156,7 +164,7 @@ body {
 }
 
 .hero-description {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.8);
     line-height: 1.6;
     margin-bottom: 30px;
@@ -192,14 +200,14 @@ body {
 }
 
 .feature h3 {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 600;
     color: white;
     margin-bottom: 10px;
 }
 
 .feature p {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: rgba(255, 255, 255, 0.8);
 }
 
@@ -209,9 +217,9 @@ body {
     background: linear-gradient(45deg, #ff6b6b, #ee5a24);
     border: none;
     color: white;
-    padding: 18px 30px;
+    padding: 15px 25px;
     border-radius: 50px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
     display: flex;
@@ -242,7 +250,7 @@ body {
 }
 
 .recording-instructions h2 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 600;
     color: white;
     margin-bottom: 15px;
@@ -262,7 +270,7 @@ body {
 }
 
 .sentence-box p {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     line-height: 1.6;
     color: white;
     font-weight: 400;
@@ -430,7 +438,7 @@ body {
 }
 
 .analyzing-animation h2 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 600;
     color: white;
     margin-bottom: 15px;
@@ -438,7 +446,7 @@ body {
 
 .analyzing-animation p {
     color: rgba(255, 255, 255, 0.8);
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .spinner {
@@ -472,7 +480,7 @@ body {
 }
 
 .mbti-type h2 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 700;
     color: white;
     margin-bottom: 10px;
@@ -481,7 +489,7 @@ body {
 
 .mbti-description {
     color: rgba(255, 255, 255, 0.8);
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin-bottom: 25px;
 }
 
@@ -524,7 +532,7 @@ body {
 }
 
 .mbti-info h3 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 600;
     color: white;
     margin-bottom: 15px;
@@ -533,7 +541,7 @@ body {
 .mbti-info p {
     color: rgba(255, 255, 255, 0.8);
     line-height: 1.6;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 /* 보컬 상세 정보 */
@@ -552,7 +560,7 @@ body {
 }
 
 .detail-section h4 {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     color: white;
     margin-bottom: 10px;
@@ -569,7 +577,7 @@ body {
 .detail-section p {
     color: rgba(255, 255, 255, 0.8);
     line-height: 1.5;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 /* 밸런스 차트 - 레이더 차트 */
@@ -582,7 +590,7 @@ body {
 }
 
 .balance-chart h4 {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     color: #4ecdc4;
     margin-bottom: 20px;
@@ -678,7 +686,7 @@ body {
 }
 
 .trainer-matching h3 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 600;
     color: white;
     margin-bottom: 25px;
@@ -717,7 +725,7 @@ body {
 }
 
 .trainer-info h4 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 600;
     color: white;
     margin-bottom: 5px;
@@ -725,13 +733,13 @@ body {
 
 .trainer-specialty {
     color: rgba(255, 255, 255, 0.8);
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     margin-bottom: 3px;
 }
 
 .trainer-experience {
     color: rgba(255, 255, 255, 0.6);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
 }
 
 
@@ -743,7 +751,7 @@ body {
 }
 
 .trainer-description h4 {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     color: white;
     margin-bottom: 10px;
@@ -752,7 +760,7 @@ body {
 .trainer-description p {
     color: rgba(255, 255, 255, 0.8);
     line-height: 1.5;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 /* 트레이닝 상세 정보 */
@@ -770,7 +778,7 @@ body {
 }
 
 .training-section h4 {
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 600;
     color: white;
     margin-bottom: 8px;
@@ -787,7 +795,7 @@ body {
 .training-section p {
     color: rgba(255, 255, 255, 0.8);
     line-height: 1.4;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
 }
 
 /* 액션 버튼 */
@@ -804,16 +812,16 @@ body {
     background: linear-gradient(45deg, #667eea, #764ba2);
     border: none;
     color: white;
-    padding: 18px 30px;
+    padding: 15px 25px;
     border-radius: 25px;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
     gap: 10px;
-    min-width: 200px;
+    min-width: 180px;
     justify-content: center;
 }
 
@@ -826,16 +834,16 @@ body {
     background: linear-gradient(45deg, #4ecdc4, #44a08d);
     border: none;
     color: white;
-    padding: 18px 30px;
+    padding: 15px 25px;
     border-radius: 25px;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
     gap: 10px;
-    min-width: 200px;
+    min-width: 180px;
     justify-content: center;
 }
 
@@ -848,9 +856,9 @@ body {
     background: linear-gradient(45deg, #4ecdc4, #44a08d);
     border: none;
     color: white;
-    padding: 18px 30px;
+    padding: 15px 25px;
     border-radius: 50px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
     display: flex;
@@ -870,9 +878,9 @@ body {
     background: rgba(255, 255, 255, 0.1);
     border: 2px solid rgba(255, 255, 255, 0.3);
     color: white;
-    padding: 15px 30px;
+    padding: 12px 25px;
     border-radius: 50px;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 500;
     cursor: pointer;
     display: flex;
@@ -899,11 +907,11 @@ body {
     }
     
     .hero-title {
-        font-size: 2.2rem;
+        font-size: 1.8rem;
     }
     
     .hero-description {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
     
     .trainer-card {
@@ -927,11 +935,11 @@ body {
     }
     
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
     
     .mbti-type h2 {
-        font-size: 4rem;
+        font-size: 3rem;
     }
     
     .character-images {
@@ -1040,7 +1048,7 @@ button:focus, input:focus {
 .trainer-info h4 {
     color: #4ecdc4;
     margin-bottom: 15px;
-    font-size: 1.3em;
+    font-size: 1.1em;
 }
 
 .trainer-achievements {
@@ -1054,7 +1062,7 @@ button:focus, input:focus {
     align-items: center;
     gap: 10px;
     color: #ccc;
-    font-size: 0.9em;
+    font-size: 0.8em;
 }
 
 .achievement-item i {
@@ -1075,7 +1083,7 @@ button:focus, input:focus {
 .trainer-intro h4 {
     color: #4ecdc4;
     margin-bottom: 15px;
-    font-size: 1.1em;
+    font-size: 1em;
 }
 
 .highlight-text {
@@ -1087,6 +1095,7 @@ button:focus, input:focus {
 .trainer-intro p {
     color: #ccc;
     line-height: 1.5;
+    font-size: 0.9em;
 }
 
 .career-details {
@@ -1104,7 +1113,7 @@ button:focus, input:focus {
 .career-section h4 {
     color: #4ecdc4;
     margin-bottom: 15px;
-    font-size: 1.1em;
+    font-size: 1em;
 }
 
 .career-list {
@@ -1115,8 +1124,8 @@ button:focus, input:focus {
 
 .career-item {
     color: #ccc;
-    font-size: 0.9em;
-    padding: 8px 12px;
+    font-size: 0.8em;
+    padding: 6px 10px;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 8px;
     border-left: 3px solid #4ecdc4;
@@ -1172,8 +1181,8 @@ button:focus, input:focus {
     }
     
     .career-item {
-        font-size: 0.8em;
-        padding: 6px 10px;
+        font-size: 0.75em;
+        padding: 5px 8px;
     }
 }
 
@@ -1216,21 +1225,21 @@ button:focus, input:focus {
 }
 
 .error-content h1 {
-    font-size: 6rem;
+    font-size: 4rem;
     color: #4ecdc4;
     margin-bottom: 10px;
     font-weight: 700;
 }
 
 .error-content h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: white;
     margin-bottom: 20px;
 }
 
 .error-content p {
     color: rgba(255, 255, 255, 0.8);
-    font-size: 1.1rem;
+    font-size: 1rem;
     margin-bottom: 30px;
 }
 
@@ -1238,9 +1247,9 @@ button:focus, input:focus {
     background: linear-gradient(45deg, #4ecdc4, #44a08d);
     border: none;
     color: white;
-    padding: 15px 30px;
+    padding: 12px 25px;
     border-radius: 25px;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
