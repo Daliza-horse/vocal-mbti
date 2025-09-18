@@ -12,8 +12,7 @@
     <div id="landing-page" class="page active">
         <div class="container">
             <header class="header">
-                <h1>보컬 MBTI 진단</h1>
-                <p class="subtitle">당신의 목소리로 알아보는 보컬 성격 유형</p>
+                <h1>STUDIO IMI</h1>
             </header>
             
             <main class="main-content">
@@ -21,7 +20,7 @@
                     <div class="hero-image">
                         <i class="fas fa-microphone-alt"></i>
                     </div>
-                    <h2>15초만에 알아보는<br>나만의 보컬 성격</h2>
+                    <h2>나만의 시그니처 보컬 MBTI</h2>
                     <p>음성 분석을 통해 당신의 보컬 스타일과<br>맞춤형 트레이너를 추천해드립니다</p>
                 </div>
                 
@@ -135,7 +134,7 @@
                 <button class="back-btn" onclick="goBack()">
                     <i class="fas fa-arrow-left"></i>
                 </button>
-                <h1>진단 결과</h1>
+                <h1>보컬 MBTI 진단 결과</h1>
             </header>
             
             <main class="result-content">
@@ -150,11 +149,9 @@
                 <div class="character-images">
                     <div class="character-image">
                         <img id="character-img-male" src="" alt="남성 캐릭터">
-                        <div class="character-label">남성</div>
                     </div>
                     <div class="character-image">
                         <img id="character-img-female" src="" alt="여성 캐릭터">
-                        <div class="character-label">여성</div>
                     </div>
                 </div>
                 
@@ -186,15 +183,45 @@
                 </div>
                 
                 <div class="balance-chart">
-                    <h3>보컬 밸런스</h3>
+                    <h4>보컬 밸런스</h4>
                     <div class="radar-chart">
                         <svg class="radar-svg" viewBox="0 0 300 300">
-                            <g id="grid-lines"></g>
-                            <g id="axis-lines"></g>
+                            <g id="grid-lines">
+                                <polygon id="grid-20" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                                <polygon id="grid-40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                                <polygon id="grid-60" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                                <polygon id="grid-80" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                                <polygon id="grid-100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                            </g>
+                            <g id="axis-lines">
+                                <line id="axis-vocal" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                                <line id="axis-pitch" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                                <line id="axis-rhythm" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                                <line id="axis-pronunciation" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                                <line id="axis-expression" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                            </g>
                             <polygon id="data-polygon" class="data-polygon"></polygon>
-                            <g id="data-points"></g>
-                            <g id="labels"></g>
-                            <g id="values"></g>
+                            <g id="data-points">
+                                <circle id="vocal-point" r="4" fill="#4ecdc4"/>
+                                <circle id="pitch-point" r="4" fill="#4ecdc4"/>
+                                <circle id="rhythm-point" r="4" fill="#4ecdc4"/>
+                                <circle id="pronunciation-point" r="4" fill="#4ecdc4"/>
+                                <circle id="expression-point" r="4" fill="#4ecdc4"/>
+                            </g>
+                            <g id="labels">
+                                <text id="label-vocal" text-anchor="middle" fill="white" font-size="12" font-weight="500">발성</text>
+                                <text id="label-pitch" text-anchor="start" fill="white" font-size="12" font-weight="500">음정</text>
+                                <text id="label-rhythm" text-anchor="start" fill="white" font-size="12" font-weight="500">리듬</text>
+                                <text id="label-pronunciation" text-anchor="end" fill="white" font-size="12" font-weight="500">발음</text>
+                                <text id="label-expression" text-anchor="end" fill="white" font-size="12" font-weight="500">표현력</text>
+                            </g>
+                            <g id="values">
+                                <text id="vocal-value" text-anchor="middle" fill="#4ecdc4" font-size="14" font-weight="600">95</text>
+                                <text id="pitch-value" text-anchor="middle" fill="#4ecdc4" font-size="14" font-weight="600">85</text>
+                                <text id="rhythm-value" text-anchor="middle" fill="#4ecdc4" font-size="14" font-weight="600">80</text>
+                                <text id="pronunciation-value" text-anchor="middle" fill="#4ecdc4" font-size="14" font-weight="600">70</text>
+                                <text id="expression-value" text-anchor="middle" fill="#4ecdc4" font-size="14" font-weight="600">90</text>
+                            </g>
                         </svg>
                     </div>
                 </div>
@@ -225,19 +252,81 @@
             
             <main class="trainer-content">
                 <div class="trainer-matching">
-                    <h3>김대산 트레이너</h3>
+                    <h3>김대산 가수/보컬 디렉터 트레이너</h3>
                     <div class="trainer-card">
                         <div class="trainer-avatar">
-                            <i class="fas fa-user-tie"></i>
+                            <img src="trainer/trainer photo.jpg" alt="김대산 트레이너">
                         </div>
                         <div class="trainer-info">
-                            <h4>김대산 트레이너</h4>
-                            <p class="trainer-specialty">전문 보컬 코치</p>
-                            <p class="trainer-experience">10년 경력</p>
+                            <h4>김대산 가수/보컬 디렉터</h4>
+                            <div class="trainer-achievements">
+                                <div class="achievement-item">
+                                    <i class="fas fa-trophy"></i>
+                                    <span>히든싱어 임창정 편 결승 진출</span>
+                                </div>
+                                <div class="achievement-item">
+                                    <i class="fas fa-music"></i>
+                                    <span>임창정 콘서트 게스트 출연</span>
+                                </div>
+                                <div class="achievement-item">
+                                    <i class="fas fa-microphone"></i>
+                                    <span>단독 콘서트 4회</span>
+                                </div>
+                                <div class="achievement-item">
+                                    <i class="fas fa-compact-disc"></i>
+                                    <span>앨범 5장 발매</span>
+                                </div>
+                                <div class="achievement-item">
+                                    <i class="fas fa-users"></i>
+                                    <span>누적 수강생 1,000명+</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="match-percentage">
                             <span id="match-percentage">95%</span>
                             <small>매칭률</small>
+                        </div>
+                    </div>
+                    
+                    <div class="trainer-intro">
+                        <h4>트레이너 소개</h4>
+                        <p class="highlight-text">실전 무대와 음원 디렉팅까지 가능한 '현역 가수'가 직접 트레이닝합니다!</p>
+                        <p>발성 기본부터 무대 퍼포먼스, 감정 표현까지 장르 가리지 않고 누구든 !!</p>
+                    </div>
+                    
+                    <div class="career-details">
+                        <div class="career-section">
+                            <h4>음반 활동</h4>
+                            <div class="career-list">
+                                <div class="career-item">2014 임창정 정규 12집 '너의 미소' 피쳐링</div>
+                                <div class="career-item">2017 '나만 안믿는 이별' '팅가 팅가' 발매</div>
+                                <div class="career-item">2017 '그대 그린 그림' 발매</div>
+                                <div class="career-item">2018 '넌 봄이다' 발매</div>
+                                <div class="career-item">2018 '또 그리울 오늘' 발매</div>
+                                <div class="career-item">2021 '이 노래' 발매</div>
+                            </div>
+                        </div>
+                        
+                        <div class="career-section">
+                            <h4>콘서트 활동</h4>
+                            <div class="career-list">
+                                <div class="career-item">2014 임창정 전국투어 콘서트 출연</div>
+                                <div class="career-item">2016 김대산 콘서트 vol.1</div>
+                                <div class="career-item">2021 김대산 콘서트 vol.2</div>
+                                <div class="career-item">2022 김대산 콘서트 vol.3</div>
+                                <div class="career-item">2024 김대산 콘서트 vol.4</div>
+                            </div>
+                        </div>
+                        
+                        <div class="career-section">
+                            <h4>방송 출연</h4>
+                            <div class="career-list">
+                                <div class="career-item">JTBC 히든싱어 임창정 편 '매니저 임창정' 출연</div>
+                                <div class="career-item">JTBC 히든싱어 태진아 편 '등떠밀린 태진아' 출연</div>
+                                <div class="career-item">MBC FM모닝쇼 '라송' 진행</div>
+                                <div class="career-item">MBC 정오의 희망곡 '썸남 쌈송' 진행</div>
+                                <div class="career-item">TVN 쇼 오디오자키 출연</div>
+                            </div>
                         </div>
                     </div>
                     
@@ -276,3 +365,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+

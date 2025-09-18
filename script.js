@@ -3,7 +3,6 @@ let mediaRecorder;
 let audioChunks = [];
 let isRecording = false;
 let audioBlob = null;
-let mbtiDataReady = Promise.resolve();
 
 // MBTI 유형 데이터
 const mbtiTypes = [
@@ -52,7 +51,7 @@ const mbtiTypes = [
     { type: 'ESFP', name: '연예인형', description: '자유롭고 표현력이 풍부한 보컬 스타일을 가지고 있습니다. 무대에서 빛을 발합니다.', character: '13.esfp', images: ['KakaoTalk_20250915_104133904_03.png', 'KakaoTalk_20250915_104133904_22.png'] },
     { type: 'ISFP', name: '모험가형', description: '감성적이고 예술적인 보컬 스타일을 가지고 있습니다. 아름다운 음색을 추구합니다.', character: '14.isfp', images: ['KakaoTalk_20250915_104133904_04.png', 'KakaoTalk_20250915_104133904_23.png'] },
     { type: 'ENTJ', name: '통솔자형', description: '리더십 있고 목표 지향적인 보컬 스타일을 가지고 있습니다. 체계적인 훈련을 선호합니다.', character: '15.entj', images: ['KakaoTalk_20250915_104133904_05.png', 'KakaoTalk_20250915_104133904_24.png'] },
-    { type: 'INFP', name: '중재자형', description: '감성적이고 개성적인 보컬 스타일을 가지고 있습니다. 자신만의 독특한 매력을 추구합니다.', character: '16.infp', images: ['KakaoTalk_20250915_104133904_06.png', 'KakaoTalk_20250915_104133904_25.png'] }
+    { type: 'INTJ', name: '건축가형', description: '전략적이고 체계적인 보컬 스타일을 가지고 있습니다. 완벽한 기술적 완성도를 추구합니다.', character: '16.intj', images: ['KakaoTalk_20250915_104133904_06.png', 'KakaoTalk_20250915_104133904_25.png'] }
 ];
 
 // mbti 폴더의 텍스트 파일을 읽어 MBTI 데이터에 반영
@@ -277,17 +276,22 @@ function updateProgress(percentage) {
 function startAnalysis() {
     showPage('analyzing-page');
     
+    // MBTI 데이터 로드 (비동기이지만 기다리지 않음)
+    loadMbtiData();
+    
     // 3초 후 결과 표시
-    setTimeout(async () => {
-        try { await mbtiDataReady; } catch (e) {}
+    setTimeout(() => {
         showResult();
     }, 3000);
 }
 
 // 결과 표시
 function showResult() {
-    // 랜덤 MBTI 선택
-    const randomMbti = mbtiTypes[Math.floor(Math.random() * mbtiTypes.length)];
+    try {
+        // 랜덤 MBTI 선택
+        const randomMbti = mbtiTypes[Math.floor(Math.random() * mbtiTypes.length)];
+        
+        console.log('Selected MBTI:', randomMbti);
     
     // 결과 페이지 업데이트
     document.getElementById('mbti-type').querySelector('h2').textContent = randomMbti.type;
@@ -314,7 +318,8 @@ function showResult() {
 
     // 레이더 차트 업데이트 (없으면 기본 밸런스 적용)
     const defaultBalance = { vocal: 80, pitch: 80, rhythm: 80, pronunciation: 80, expression: 80 };
-    updateRadarChart(Object.assign({}, defaultBalance, randomMbti.balance || {}));
+    const finalBalance = Object.assign({}, defaultBalance, randomMbti.balance || {});
+    updateRadarChart(finalBalance);
 
     // 트레이너 데이터는 다음 페이지에서 표시 (상태만 저장)
     window.__trainerData = {
@@ -331,6 +336,12 @@ function showResult() {
     document.getElementById('match-percentage').textContent = matchPercentage + '%';
     
     showPage('result-page');
+    
+    } catch (error) {
+        console.error('Error in showResult:', error);
+        // 오류가 발생해도 결과 페이지로 이동
+        showPage('result-page');
+    }
 }
 
 // 결과 공유하기
@@ -415,6 +426,7 @@ function initializeRadarChart() {
     });
 }
 
+
 // 레이더 차트 업데이트 함수
 function updateRadarChart(balance) {
     const centerX = 150;
@@ -475,21 +487,21 @@ function updateRadarChart(balance) {
     document.getElementById('pronunciation-value').textContent = balance.pronunciation;
     document.getElementById('expression-value').textContent = balance.expression;
     
-    // 값 텍스트 위치 업데이트 (각 방향에 맞게 조정)
-    document.getElementById('vocal-value').setAttribute('x', vocalX);
-    document.getElementById('vocal-value').setAttribute('y', vocalY - 15);
+    // 값 텍스트 위치 업데이트 (각 포인트 옆에 표시)
+    document.getElementById('vocal-value').setAttribute('x', vocalX + 10);
+    document.getElementById('vocal-value').setAttribute('y', vocalY);
     
-    document.getElementById('pitch-value').setAttribute('x', pitchX + 15);
-    document.getElementById('pitch-value').setAttribute('y', pitchY - 5);
+    document.getElementById('pitch-value').setAttribute('x', pitchX + 10);
+    document.getElementById('pitch-value').setAttribute('y', pitchY);
     
-    document.getElementById('rhythm-value').setAttribute('x', rhythmX + 15);
-    document.getElementById('rhythm-value').setAttribute('y', rhythmY + 5);
+    document.getElementById('rhythm-value').setAttribute('x', rhythmX + 10);
+    document.getElementById('rhythm-value').setAttribute('y', rhythmY);
     
-    document.getElementById('pronunciation-value').setAttribute('x', pronunciationX - 15);
-    document.getElementById('pronunciation-value').setAttribute('y', pronunciationY + 5);
+    document.getElementById('pronunciation-value').setAttribute('x', pronunciationX - 10);
+    document.getElementById('pronunciation-value').setAttribute('y', pronunciationY);
     
-    document.getElementById('expression-value').setAttribute('x', expressionX - 15);
-    document.getElementById('expression-value').setAttribute('y', expressionY - 5);
+    document.getElementById('expression-value').setAttribute('x', expressionX - 10);
+    document.getElementById('expression-value').setAttribute('y', expressionY);
 }
 
 // 트레이너 연락
@@ -561,6 +573,57 @@ window.addEventListener('offline', function() {
 });
 
 // 성능 모니터링
+// MBTI 데이터 로딩 (GitHub Pages 호환)
+async function loadMbtiData() {
+    // GitHub Pages에서는 파일 로딩이 실패할 수 있으므로 기본 데이터 사용
+    console.log('Using default MBTI data for GitHub Pages');
+    
+    // 기본 데이터가 이미 mbtiTypes 배열에 있으므로 추가 로딩 불필요
+    // 필요시 여기서 추가 데이터 설정 가능
+}
+
+// MBTI 텍스트 파싱 함수
+function parseMbtiText(text) {
+    const lines = text.split('\n').map(line => line.trim()).filter(line => line);
+    
+    const result = {
+        type: lines[0],
+        name: lines[1],
+        description: lines[2],
+        vocalFeatures: lines[3],
+        strengths: lines[4],
+        genres: lines[5],
+        songs: lines[6],
+        artists: lines[7],
+        trainingMethod: lines[8],
+        trainingDirection: lines[9],
+        balance: parseBalance(lines[10]),
+        trainerDescription: lines[11]
+    };
+    
+    return result;
+}
+
+// 밸런스 파싱 함수
+function parseBalance(balanceText) {
+    const balance = {};
+    const parts = balanceText.split('/');
+    
+    parts.forEach(part => {
+        const [key, value] = part.split(':').map(s => s.trim());
+        if (key && value) {
+            balance[key] = parseInt(value);
+        }
+    });
+    
+    return balance;
+}
+
+// 페이지 로드 시 MBTI 데이터 로딩
+document.addEventListener('DOMContentLoaded', function() {
+    loadMbtiData();
+});
+
 if ('performance' in window) {
     window.addEventListener('load', function() {
         setTimeout(function() {
