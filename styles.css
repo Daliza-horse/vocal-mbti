@@ -5,11 +5,62 @@
     box-sizing: border-box;
 }
 
+/* 다크모드/라이트모드 구분 없이 강제 색상 설정 */
+* {
+    color: inherit !important;
+}
+
+/* 모든 텍스트 요소를 흰색으로 강제 설정 */
+h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, select, label, li, td, th {
+    color: #ffffff !important;
+}
+
+/* 특별히 어두운 색상이 필요한 요소들 */
+.recording-btn, .action-btn, .share-btn, .trainer-recommendation-btn {
+    color: #ffffff !important;
+}
+
+/* 강조 색상은 그대로 유지하되 가시성 확보 */
+.mbti-type, .match-percentage, .trainer-info h4, .trainer-intro h4, .career-section h4, 
+.error-icon, .error-content h1 {
+    color: #4ecdc4 !important;
+}
+
+/* 회색 텍스트도 흰색으로 변경 */
+.achievement-item, .trainer-intro p, .career-item {
+    color: #ffffff !important;
+}
+
+/* 아이콘 색상도 강제 설정 */
+.achievement-item i {
+    color: #4ecdc4 !important;
+}
+
+/* 매칭률 텍스트 강조 */
+.match-percentage small {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 500;
+}
+
+/* 하이라이트 텍스트 색상 */
+.highlight-text {
+    color: #4ecdc4 !important;
+}
+
+/* 에러/성공 메시지 색상 유지 */
+.success {
+    color: #4ecdc4 !important;
+}
+
+.error {
+    color: #ff6b6b !important;
+}
+
 body {
     font-family: 'Noto Sans KR', sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
-    color: #333;
+    color: #ffffff !important;
     overflow-x: hidden;
 }
 
