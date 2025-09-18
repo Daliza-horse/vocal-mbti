@@ -3,6 +3,7 @@ let mediaRecorder;
 let audioChunks = [];
 let isRecording = false;
 let audioBlob = null;
+let currentResult = null; // 현재 결과 저장
 
 // MBTI 유형 데이터
 const mbtiTypes = [
@@ -291,45 +292,13 @@ function showResult() {
         // 랜덤 MBTI 선택
         const randomMbti = mbtiTypes[Math.floor(Math.random() * mbtiTypes.length)];
         
+        // 현재 결과 저장
+        currentResult = randomMbti;
+        
         console.log('Selected MBTI:', randomMbti);
     
-    // 결과 페이지 업데이트
-    document.getElementById('mbti-type').querySelector('h2').textContent = randomMbti.type;
-    document.getElementById('mbti-title').textContent = randomMbti.name;
-    document.getElementById('mbti-detail').textContent = randomMbti.description;
-    
-    // 캐릭터 이미지 설정 (남녀 모두 표시)
-    const characterPath = `character/${randomMbti.character}/`;
-    const maleImg = document.getElementById('character-img-male');
-    const femaleImg = document.getElementById('character-img-female');
-    
-    // 첫 번째 이미지는 남성, 두 번째 이미지는 여성으로 가정
-    maleImg.src = characterPath + randomMbti.images[0];
-    femaleImg.src = characterPath + randomMbti.images[1];
-    maleImg.alt = `${randomMbti.type} 남성 캐릭터`;
-    femaleImg.alt = `${randomMbti.type} 여성 캐릭터`;
-    
-    // 보컬 상세 정보 업데이트 (값이 없으면 기본값 적용)
-    document.getElementById('vocal-features').textContent = randomMbti.vocalFeatures || '당신의 보컬 개성과 강점을 살릴 수 있는 트레이닝을 추천합니다.';
-    document.getElementById('strengths').textContent = randomMbti.strengths || '강점을 극대화하고 약점을 보완하는 방향으로 진행합니다.';
-    document.getElementById('genres').textContent = randomMbti.genres || '발라드, 팝, R&B';
-    document.getElementById('songs').textContent = randomMbti.songs || '추천곡은 상담 후 맞춤 제공됩니다.';
-    document.getElementById('artists').textContent = randomMbti.artists || '유사 아티스트는 추후 제안드립니다.';
-
-    // 레이더 차트 업데이트 (없으면 기본 밸런스 적용)
-    const defaultBalance = { vocal: 80, pitch: 80, rhythm: 80, pronunciation: 80, expression: 80 };
-    const finalBalance = Object.assign({}, defaultBalance, randomMbti.balance || {});
-    updateRadarChart(finalBalance);
-
-    // 트레이너 데이터는 다음 페이지에서 표시 (상태만 저장)
-    window.__trainerData = {
-        name: '김대산 트레이너',
-        specialty: '전문 보컬 코치',
-        experience: '10년 경력',
-        matchReason: randomMbti.trainerDescription || '당신의 성격과 보컬 스타일에 최적화된 트레이닝을 제공합니다.',
-        method: randomMbti.trainingMethod || '퍼포먼스 중심 트레이너 / 무대 연출, 호흡 제어, 시선/표정 트레이닝',
-        direction: randomMbti.trainingDirection || '고음 체력 유지 훈련, 무대 동선 응용, 시선처리와 표정 제어, 발성 안전 벨팅 연습'
-    };
+    // 결과 표시 (공통 함수 사용)
+    displayResult(randomMbti);
     
     // 매칭률 계산 (85-98% 사이 랜덤)
     const matchPercentage = Math.floor(Math.random() * 14) + 85;
@@ -346,13 +315,26 @@ function showResult() {
 
 // 결과 공유하기
 function shareResult() {
-    const title = document.getElementById('mbti-type').querySelector('h2').textContent;
-    const text = `${title} 유형 결과가 나왔어요! 보컬 MBTI로 나의 보컬 성격을 확인해보세요.`;
-    const url = location.href;
+    if (!currentResult) {
+        alert('공유할 결과가 없습니다.');
+        return;
+    }
+    
+    const title = currentResult.type;
+    const name = currentResult.name;
+    const text = `${title} ${name} 유형 결과가 나왔어요! 보컬 MBTI로 나의 보컬 성격을 확인해보세요.`;
+    
+    // 결과별 고유 URL 생성
+    const resultUrl = `${location.origin}${location.pathname}?result=${currentResult.type}`;
+    
     if (navigator.share) {
-        navigator.share({ title: '보컬 MBTI 결과', text, url }).catch(() => {});
+        navigator.share({ 
+            title: '보컬 MBTI 결과', 
+            text, 
+            url: resultUrl 
+        }).catch(() => {});
     } else {
-        navigator.clipboard.writeText(`${text}\n${url}`);
+        navigator.clipboard.writeText(`${text}\n${resultUrl}`);
         alert('결과 링크가 클립보드에 복사되었습니다.');
     }
 }
@@ -528,6 +510,62 @@ function restartDiagnosis() {
     showPage('landing-page');
 }
 
+// URL 파라미터에서 결과 로드
+function loadResultFromUrl() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const resultType = urlParams.get('result');
+    
+    if (resultType) {
+        // 해당 MBTI 타입 찾기
+        const mbtiResult = mbtiTypes.find(mbti => mbti.type === resultType);
+        if (mbtiResult) {
+            currentResult = mbtiResult;
+            displayResult(mbtiResult);
+            showPage('result-page');
+            return true;
+        }
+    }
+    return false;
+}
+
+// 결과 표시 함수 (공통)
+function displayResult(mbtiResult) {
+    // 결과 페이지 업데이트
+    document.getElementById('mbti-type').querySelector('h2').textContent = mbtiResult.type;
+    document.getElementById('mbti-title').textContent = mbtiResult.name;
+    document.getElementById('mbti-detail').textContent = mbtiResult.description;
+    
+    // 캐릭터 이미지 설정 (남녀 모두 표시)
+    const characterPath = `character/${mbtiResult.character}/`;
+    const maleImg = document.getElementById('character-img-male');
+    const femaleImg = document.getElementById('character-img-female');
+    
+    // 첫 번째 이미지는 남성, 두 번째 이미지는 여성으로 가정
+    maleImg.src = characterPath + mbtiResult.images[0];
+    femaleImg.src = characterPath + mbtiResult.images[1];
+    maleImg.alt = `${mbtiResult.type} 남성 캐릭터`;
+    femaleImg.alt = `${mbtiResult.type} 여성 캐릭터`;
+    
+    // 보컬 특징 업데이트
+    document.getElementById('vocal-features').textContent = mbtiResult.vocalFeatures || '추후에 제공됩니다.';
+    document.getElementById('strengths').textContent = mbtiResult.strengths || '추후에 제공됩니다.';
+    document.getElementById('genres').textContent = mbtiResult.genres || '추후에 제공됩니다.';
+    document.getElementById('songs').textContent = mbtiResult.songs || '추후에 제공됩니다.';
+    document.getElementById('artists').textContent = mbtiResult.artists || '추후에 제공됩니다.';
+    
+    // 레이더 차트 업데이트
+    if (mbtiResult.balance) {
+        updateRadarChart(mbtiResult.balance);
+    }
+    
+    // 트레이너 추천 데이터 저장
+    window.__trainerData = {
+        matchReason: mbtiResult.trainerDescription || '추후에 제공됩니다.',
+        method: mbtiResult.trainingMethod || '추후에 제공됩니다.',
+        direction: mbtiResult.trainingDirection || '추후에 제공됩니다.'
+    };
+}
+
 // 페이지 로드 시 초기화
 document.addEventListener('DOMContentLoaded', function() {
     // 브라우저 호환성 확인
@@ -535,14 +573,17 @@ document.addEventListener('DOMContentLoaded', function() {
         alert('이 브라우저는 음성 녹음 기능을 지원하지 않습니다. 최신 브라우저를 사용해주세요.');
     }
     
-    // 초기 페이지 설정
-    showPage('landing-page');
-    
     // 레이더 차트 초기화
     initializeRadarChart();
 
     // MBTI 텍스트 파일 로딩 (결과 반영용)
     mbtiDataReady = loadAllMbtiData();
+    
+    // URL에서 결과 로드 시도
+    if (!loadResultFromUrl()) {
+        // URL에 결과가 없으면 랜딩 페이지 표시
+        showPage('landing-page');
+    }
     
     // 스크롤 부드럽게
     document.documentElement.style.scrollBehavior = 'smooth';
