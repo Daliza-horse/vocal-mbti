@@ -486,7 +486,7 @@ function updateRadarChart(balance) {
 // 트레이너 연락
 function contactTrainer() {
     // 카카오 오픈채팅으로 연결
-    window.open('https://open.kakao.com/o/srW3XcSh', '_blank');
+    window.open('https://open.kakao.com/o/shov5qTh', '_blank');
 }
 
 // 진단 다시 시작
