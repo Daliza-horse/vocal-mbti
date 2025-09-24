@@ -93,9 +93,9 @@ body {
 .header {
     padding: 15px 0;
     text-align: center;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
     min-height: 60px;
     display: flex;
@@ -129,7 +129,7 @@ body {
     left: 15px;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
     border: none;
     color: white;
     width: 36px;
@@ -144,7 +144,7 @@ body {
 }
 
 .back-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.2);
     transform: translateY(-50%) scale(1.05);
 }
 
@@ -193,18 +193,18 @@ body {
 }
 
 .feature {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     border-radius: 15px;
     padding: 25px;
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
 }
 
 .feature:hover {
     transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.08);
 }
 
 .feature i {
@@ -276,11 +276,11 @@ body {
 }
 
 .sentence-box {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     border-radius: 15px;
     padding: 25px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .sentence-box p {
@@ -338,7 +338,7 @@ body {
 .status-text {
     display: inline-block;
     padding: 8px 16px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 20px;
     backdrop-filter: blur(10px);
 }
@@ -352,8 +352,8 @@ body {
 }
 
 .record-btn, .stop-btn {
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.2);
     color: white;
     padding: 12px 24px;
     border-radius: 25px;
@@ -368,8 +368,8 @@ body {
 }
 
 .record-btn:hover, .stop-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .record-btn:disabled, .stop-btn:disabled {
@@ -384,11 +384,11 @@ body {
 
 /* 오디오 플레이어 */
 .audio-player {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     border-radius: 15px;
     padding: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     margin-bottom: 20px;
 }
 
@@ -398,8 +398,8 @@ body {
 }
 
 .retry-btn {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     color: white;
     padding: 10px 20px;
     border-radius: 20px;
@@ -413,7 +413,7 @@ body {
 }
 
 .retry-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 /* 진행률 */
@@ -424,7 +424,7 @@ body {
 .progress-bar {
     width: 100%;
     height: 6px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 3px;
     overflow: hidden;
     margin-bottom: 15px;
@@ -484,13 +484,13 @@ body {
 }
 
 .mbti-result {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     border-radius: 20px;
     padding: 30px;
     text-align: center;
     margin-bottom: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .mbti-type h2 {
@@ -567,10 +567,10 @@ body {
 }
 
 .detail-section {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03);
     border-radius: 10px;
     padding: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .detail-section h4 {
@@ -596,10 +596,10 @@ body {
 
 /* 밸런스 차트 - 레이더 차트 */
 .balance-chart {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03);
     border-radius: 15px;
     padding: 25px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     margin-bottom: 40px;
 }
 
@@ -691,12 +691,12 @@ body {
 
 /* 트레이너 매칭 */
 .trainer-matching {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     border-radius: 20px;
     padding: 30px;
     margin-bottom: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .trainer-matching h3 {
@@ -710,11 +710,11 @@ body {
 .trainer-card {
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03);
     border-radius: 15px;
     padding: 20px;
     margin-bottom: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .trainer-avatar {
@@ -758,10 +758,10 @@ body {
 
 
 .trainer-description {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03);
     border-radius: 10px;
     padding: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .trainer-description h4 {
@@ -785,10 +785,10 @@ body {
 }
 
 .training-section {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03);
     border-radius: 10px;
     padding: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .training-section h4 {
@@ -889,8 +889,8 @@ body {
 }
 
 .retry-btn {
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.2);
     color: white;
     padding: 12px 25px;
     border-radius: 50px;
@@ -906,8 +906,8 @@ body {
 }
 
 .retry-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 /* 반응형 디자인 */
@@ -1023,7 +1023,7 @@ button:focus, input:focus {
 }
 
 .trainer-matching {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 20px;
     padding: 30px;
     margin-bottom: 30px;
@@ -1036,7 +1036,7 @@ button:focus, input:focus {
     gap: 20px;
     margin-bottom: 30px;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03);
     border-radius: 15px;
 }
 
@@ -1087,7 +1087,7 @@ button:focus, input:focus {
 
 
 .trainer-intro {
-    background: rgba(78, 205, 196, 0.1);
+    background: rgba(78, 205, 196, 0.05);
     border-radius: 15px;
     padding: 20px;
     margin-bottom: 20px;
@@ -1117,7 +1117,7 @@ button:focus, input:focus {
 }
 
 .career-section {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03);
     border-radius: 15px;
     padding: 20px;
     margin-bottom: 15px;
@@ -1140,7 +1140,7 @@ button:focus, input:focus {
     color: #ccc;
     font-size: 0.8em;
     padding: 6px 10px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03);
     border-radius: 8px;
     border-left: 3px solid #4ecdc4;
 }
@@ -1225,11 +1225,11 @@ button:focus, input:focus {
 }
 
 .error-content {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 20px;
     padding: 40px;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .error-icon {
